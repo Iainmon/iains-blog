@@ -1,0 +1,15 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'mainroad'
+
+# [Params]
+#     customCSS = ["syntax.css"] # Include custom CSS files
+
+[Params.style.vars]
+  highlightColor = "#43a4dd" # Override highlight color
+  fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+
+[markup]
+  [markup.highlight]
+    style = 'arduino'
