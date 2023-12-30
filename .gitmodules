@@ -1,5 +1,5 @@
 [submodule "themes/ananke"]
-	path = themes/ananke
+	path = themes/ananke-remote
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
 [submodule "themes/compost"]
 	path = themes/compost
@@ -7,3 +7,15 @@
 [submodule "themes/mainroad"]
 	path = themes/mainroad
 	url = https://github.com/vimux/mainroad.git
+[submodule "themes/anubis"]
+	path = themes/anubis
+	url = https://github.com/mitrichius/hugo-theme-anubis.git
+[submodule "themes/goldmark"]
+	path = themes/goldmark
+	url = https://github.com/yuin/goldmark.git
+[submodule "themes/hugo"]
+	path = themes/hugo
+	url = https://github.com/gohugoio/hugo.git
+[submodule "themes/vanilla"]
+	path = themes/vanilla
+	url = https://dev.danilafe.com/Web-Projects/vanilla-hugo.git

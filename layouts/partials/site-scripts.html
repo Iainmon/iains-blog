@@ -1,0 +1,4 @@
+{{ partial "katex/assets/css" . }}
+{{ partial "katex/assets/js" . }}
+{{ $siteStyle := resources.Get "scss/style.scss" | resources.ToCSS  }}
+<link rel="stylesheet" href="{{ $siteStyle.Permalink }}">

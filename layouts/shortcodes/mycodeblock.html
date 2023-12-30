@@ -1,0 +1,3 @@
+{{- $input := .Get "source" -}}
+{{- $lang := .Get "language" -}}
+{{ partial "chromify.html" (dict "language" $lang "source" $input) }}

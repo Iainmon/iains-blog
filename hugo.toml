@@ -1,15 +1,55 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://moncrief.dev/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = 'mainroad'
+title = 'Iain Moncrief'
+theme = 'ananke'
+
+defaultContentLanguage = 'en'
+
+enableInlineShortcodes = true
+
+# [params]
+#   DefaultContentLanguage = "en"
+#   SectionPagesMenu = "main"
+#   Paginate = 3 # this is set low for demonstrating with dummy content. Set to a higher number
+#   googleAnalytics = ""
+#   enableRobotsTXT = true
 
 # [Params]
-#     customCSS = ["syntax.css"] # Include custom CSS files
+#   mathjax = false
+#   # customCSS = ["layouts/css/custom.css"] # Include custom CSS files
+#   # customJS = ["layouts/js/custom.js"] # Include custom JS files
 
-[Params.style.vars]
-  highlightColor = "#43a4dd" # Override highlight color
-  fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+
+# [Params.style.vars]
+#   highlightColor = "#43a4dd" # Override highlight color
+#   fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+pygmentsUseClasses = true
+# pygmentsCodefences = false
 
 [markup]
   [markup.highlight]
-    style = 'arduino'
+    guessSyntax = false
+    lineNos = false
+    tabWidth = 2
+    noClasses = false
+
+
+# # required
+# [build]
+#   _merge = 'deep'
+
+# # for better seo
+# [minify]
+#   _merge = 'deep'
+
+[module]
+  [[module.imports]]
+    path = 'github.com/hugomods/katex'
+  # [[module.mounts]]
+  #   source = 'assets'
+  #   target = 'assets'
+  # [[module.mounts]]
+  #   source = "hugo_stats.json"
+  #   target = "assets/watching/hugo_stats.json"
+  # [[module.imports]]
+  #   path = 'github.com/canstand/compost'
