@@ -1,4 +1,4 @@
-[submodule "themes/-remote"]
+[submodule "themes/ananke-remote"]
 	path = themes/ananke-remote
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
 [submodule "themes/compost"]
