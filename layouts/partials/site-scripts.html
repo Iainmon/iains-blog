@@ -1,4 +1,10 @@
 {{ partial "katex/assets/css" . }}
 {{ partial "katex/assets/js" . }}
+
 {{ $siteStyle := resources.Get "scss/style.scss" | resources.ToCSS  }}
 <link rel="stylesheet" href="{{ $siteStyle.Permalink }}">
+
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js" defer></script>
+<script src="{{ (resources.Get "js/katex-render.js").Permalink }}" defer></script>
+<script src="/katex/contrib/auto-render.min.js" defer onload="katexGo()"></script>
