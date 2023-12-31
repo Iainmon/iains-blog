@@ -1,4 +1,5 @@
 /* Background */
+@import url(../fonts.css);
 .bg {
   background-color: #eef; }
 
@@ -393,3 +394,15 @@
 .chroma .w {
   color: #f8f8f8;
   text-decoration: underline; }
+
+body {
+  font-family: 'Computer Modern Serif'; }
+
+.serif {
+  font-family: 'Computer Modern Serif'; }
+
+.mid-gray {
+  color: #000000; }
+
+code {
+  font-family: 'SF Mono'; }
