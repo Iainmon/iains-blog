@@ -1,6 +1,6 @@
 module moncrief.dev
 
-go 1.21.5
+go 1.21
 
 require (
 	github.com/KaTeX/KaTeX v0.16.9 // indirect
