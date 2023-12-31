@@ -9,7 +9,7 @@ You should know what sets and types are, what a function is, and the consequence
 
 In a programming language, you have types that are given to you and types that you can construct with your own definitions. Some examples of these are `Int`, `Bool`, and function types `Int -> Int -> Int`. You may also may have types that generalize over types, an example is the type `Optional<T>` where `T` refers to any type. Notice that there is a difference between the types `Optional<Int>`, `Optional<Bool>`, and `Optional<T>`. 
 
-We can construct the set $T$ of all types in some programming languages ($T$ may be infinite but it doesn't matter). Since {{< katex "\texttt{Optional<$T$>} \in T " true />}}, we can construct the subset 
+We can construct the set $T$ of all types in some programming languages ($T$ may be infinite but it doesn't matter). Since {{< katex "\texttt{Optional<T>} \in T " true />}}, we can construct the subset 
 ```katex
 O=\{ \texttt{Optional<$t$>}\ |\ t\in T \}\subseteq T
 ```
