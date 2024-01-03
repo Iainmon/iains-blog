@@ -421,3 +421,7 @@ code {
 
 .pr4-l {
   padding-right: 0; }
+
+.colorbox {
+  opacity: 20%;
+  border-radius: 10px; }
