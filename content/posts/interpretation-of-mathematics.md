@@ -110,7 +110,7 @@ This shows how to account for definitions *of* sets, rather than relationships o
 
 To abreviate *is the same as* or *means* by $\lequiv$, which can be thought of as an equivelance. This allows us to write meta statements like
 ```katex
-\mathgreen{\mathblue{A\cap B}\subseteq C}\lequiv \mathgreen{\forall x(\mathblue{x\in A\cap B} \to x\in C)}\lequiv \mathgreen{\forall x(\mathblue{x\in A \wedge x\in B} \to x\in C)}.
+\mathgreen{A\cap B\subseteq C}\lequiv \mathgreen{\forall x(\mathblue{x\in A\cap B} \to x\in C)}\lequiv \mathgreen{\forall x(\mathblue{x\in A \wedge x\in B} \to x\in C)}.
 ```
 In many presentations, $\equiv$ is used to convey logical equivelance, which is a similar notion. The distinction between $\equiv$ and $\lequiv$ is subtle, but it is important to see that they are not the same. For two propositions are logically equivalent, $P\equiv Q$, they only need to share the same truth value under every possible interpretation (world or variable assignment). Logical equivelance does not require $P$ and $Q$ to mean the same thing, as 
 ```katex
