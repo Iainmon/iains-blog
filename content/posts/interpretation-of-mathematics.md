@@ -127,6 +127,8 @@ It's worth noting that $P\lequiv Q$ implies $P\equiv Q$, since $\equiv$ is refle
 Here, same colors indicate the same underlying logical sentence.
 
 
+Mathematicians have the ability to apply both kinds of equivelance as they reason, but usually don't recognize the usage of $\lequiv$.
+
 
 #### Draft notes after this
 It is important to note 
