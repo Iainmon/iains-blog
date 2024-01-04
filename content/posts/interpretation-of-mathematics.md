@@ -8,7 +8,11 @@ draft = false
 \gdef\mathblue#1{\colorbox{blue}{$#1$}}
 \gdef\mathgreen#1{\colorbox{green}{$#1$}}
 \gdef\mathred#1{\colorbox{red}{$#1$}}
+\gdef\mathhl#1{\colorbox{Orchid}{$#1$}}
+
+\gdef\lequiv{\fallingdotseq}
 ```
+$\gdef\lequiv{\fallingdotseq}$
 
 What mathematics describes is a long standing issue in philosophy. It is hard to break into this subject, but I hope that my intent can be shared. 
 
@@ -57,11 +61,14 @@ we can see that *is a subset of* or $\subseteq$ is the property, and *for all $x
 
 I used to think that a definition introduced a new axiom, on top of ZFC, that I was supposed to add to my mathematical library. In the case of $\subseteq$, the axiom would be
 ```katex
-\forall A\forall B(A \subseteq B \leftrightarrow \forall x(x\in A\to x\in B) ),
+A \subseteq B \leftrightarrow \forall x(x\in A\to x\in B),
 ```
 adding a new symbol into my growing mathematical formal system. One issue with this is that I have changed the syntax of FOL by introducing the $\subseteq$ symbol. Another is that I am no longer in ZFC, but ZFC plus my new axiom. 
 
-The current sense I have of definitions of properties is that they are abreviations or *macros*. So $A\subseteq B$ is an abbreviation for $\forall x(x \in A\to x \in B)$, so the property is $\subseteq$. In this way though, the property is not a component of the underlying ZFC set theory or FOL, but just a shorthand of the logical sentence that the notion "subset" is said to mean. 
+Things didn't feel righ like this though. Especially since mathemeticians don't use "if and only if" in definitions. The only way I could reconsile my view with what I saw was to deem mathemeticians as being sort of hand wavy, or think that *if* meant *iff* when in a definition, as some sort of convention. However, mathemeticians are not known for being imprecise.
+
+
+The current sense I have of definitions of properties is that they are lossless abreviations or *macros*. So $A\subseteq B$ is an abbreviation for $\forall x(x \in A\to x \in B)$, so the property is $\subseteq$. In this way though, the property is not a component of the underlying ZFC set theory or FOL, but just a shorthand of the logical sentence that the notion "subset" is said to mean. 
 
 In this interpretation, any theorem can be reduced to its full logical sentence, leaving the underlying logical sentence unchanged. In other words, when a mathemetician uses a defined property in a theorem, they are just writing the shorthand version of that property's condition. 
 
@@ -78,7 +85,59 @@ which is the same as
 \mathblue{\forall x(x \in A\to x \in B)}\wedge \mathgreen{\forall x(x \in B\to x \in C)} \to \mathred{\forall x(x \in A\to x \in C)}
 ```
 
+In this way, it *does* make sense to say 
+> $A\subseteq B$ if $\forall x(x \in A\to x \in B)$,
 
+since the *if* does not represent a connective in FOL, as in $\to$, but rather a connective in natural language, English. 
+
+The nature of definitions then change slightly. They can be thought of as providing a lens or filter for certain forms of statements, so the statements may be reasoned about at a higher level. Definitions may then also be seen as philisophical statements, that connect concepts with their set theoretic embedding. 
+
+As you become familiar with a certain area of mathematics, you will start to come up with your own corrallaries and lemmas. Many of them will be useless, but in order to determine the significance, you have to examine them at a higher level, by applying definitions.
+
+
+### Formal Definitions in Set Theory
+
+Suppose $A$ is a set. What can you do with $A$? From a logical perspective, all that is important is what $x\in A$ means. When doing proofs, mathematicians care more about this than what the set actually is. 
+
+For any two sets $A$ and $B$, consider the intersection $A\cap B$. 
+
+Using *$A\cap B$ is the set of elements that are shared by $A$ and $B$*, we have no idea what it means for $x\in A\cap B$ (ignoring the obvious). Instead, $A\cap B$ is better characterized by the assertion 
+> *$x\in A\cap B$ means $x\in A$ and $x\in B$*,
+
+which tells us exactly how to deal with the set $A\cap B$ logically. After seeing and working with this definition, one can say *$A\cap B$ is the set of elements that are shared by $A$ and $B$*.
+
+This shows how to account for definitions *of* sets, rather than relationships of them, like $A\subseteq B$. In both situations, a logical statement was given as an abreviation for more statements. To make this more sussinct, we can introduce a notation that captures this. 
+
+To abreviate *is the same as* or *means* by $\lequiv$, which can be thought of as an equivelance. This allows us to write meta statements like
+```katex
+\mathgreen{\mathblue{A\cap B}\subseteq C}\lequiv \mathgreen{\forall x(\mathblue{x\in A\cap B} \to x\in C)}\lequiv \mathgreen{\forall x(\mathblue{x\in A \wedge x\in B} \to x\in C)}.
+```
+In many presentations, $\equiv$ is used to convey logical equivelance, which is a similar notion. The distinction between $\equiv$ and $\lequiv$ is subtle, but it is important to see that they are not the same. For two propositions are logically equivalent, $P\equiv Q$, they only need to share the same truth value under every possible interpretation (world or variable assignment). Logical equivelance does not require $P$ and $Q$ to mean the same thing, as 
+```katex
+x\in A \wedge y\in B \equiv y\in B \wedge x\in A
+```
+but
+```katex
+x\in A \wedge y\in B \not\lequiv y\in B \wedge x\in A.
+```
+It's worth noting that $P\lequiv Q$ implies $P\equiv Q$, since $\equiv$ is reflexive. Since a sequence of $\lequiv$ equations has no effect on the underlying logical sentances, it has no importance in a formal proof, unlike $\equiv$. Therefore, $\lequiv$ equivelancies are only useful for *rephrasing* logical sentances for the benefit of understanding or communication. We can see how both may be used to show $x\in A\cap B$ is logically the same as $x\in B \cap A$,
+```katex
+\mathblue{x\in A\cap B}\lequiv \mathblue{x\in A\wedge x\in B }\equiv \mathgreen{x\in B \wedge x\in A}\lequiv \mathgreen{x\in B\cap A}.
+```
+Here, same colors indicate the same underlying logical sentence.
+
+
+
+#### Draft notes after this
+It is important to note 
+
+To indicate a definition, which is an assertional $\lequiv$ statement, we will use $:\lequiv$, so
+```katex
+\begin{align*}
+A\subseteq B & :\lequiv \forall x(x \in A\to x \in B)\\
+x\in A\cap B &:\lequiv x\in A\wedge x \in B
+\end{align*}
+```
 
 
 
