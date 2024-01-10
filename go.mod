@@ -9,4 +9,5 @@ require (
 	github.com/canstand/compost v0.6.4 // indirect
 	github.com/dlclark/regexp2 v1.4.0 // indirect
 	github.com/hugomods/katex v0.3.0 // indirect
+	github.com/mfg92/hugo-shortcode-gallery v1.0.0 // indirect
 )

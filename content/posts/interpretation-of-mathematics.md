@@ -42,7 +42,7 @@ A theory in FOL is a collection of FOL statements called *axioms*, that describe
 
 #### ZFC
 
-ZFC is probably the most famous FOL theory, which has nine axioms that all describe the $\in$ predicate that relates sets to their elements. The intention of ZFC is to be a clearly defined foundation for which all mathematical truths can be proved. So any mathematical theorem must somehow be derived from the axioms of ZFC, using the rules of inference from FOL. This amazing.
+ZFC is probably the most famous FOL theory, which has nine axioms that all describe the $\in$ predicate that relates sets to their elements. The intention of ZFC is to be a clearly defined foundation for which all mathematical truths can be proved. So any mathematical theorem must somehow be derived from the axioms of ZFC, using the rules of inference from FOL. This is amazing.
 
 
 
@@ -129,6 +129,9 @@ Here, same colors indicate the same underlying logical sentence.
 
 Mathematicians have the ability to apply both kinds of equivelance as they reason, but usually don't recognize the usage of $\lequiv$.
 
+> *How may a definition be delivered?* I have not yet answered this question.
+
+
 
 #### Draft notes after this
 It is important to note 
@@ -139,7 +142,9 @@ To indicate a definition, which is an assertional $\lequiv$ statement, we will u
 A\subseteq B & :\lequiv \forall x(x \in A\to x \in B)\\
 x\in A\cap B &:\lequiv x\in A\wedge x \in B
 \end{align*}
-```
+``` 
+
+
 
 
 

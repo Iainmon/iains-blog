@@ -1,11 +1,14 @@
 baseURL = 'https://moncrief.dev/'
 languageCode = 'en-us'
 title = 'Iain Moncrief'
-theme = 'ananke'
+theme = ['ananke', 'hugo-shortcode-gallery']
+
+timeout = 60000 # This is required for larger galleries to be build (60 sec)
 
 defaultContentLanguage = 'en'
 
 enableInlineShortcodes = true
+
 
 # [params]
 #   DefaultContentLanguage = "en"
@@ -48,6 +51,7 @@ pygmentsUseClasses = true
   [[module.mounts]]
     source = 'assets'
     target = 'assets'
+  
   # [[module.mounts]]
   #   source = "hugo_stats.json"
   #   target = "assets/watching/hugo_stats.json"
