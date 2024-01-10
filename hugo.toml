@@ -5,6 +5,7 @@ theme = ['ananke', 'hugo-shortcode-gallery']
 
 timeout = 60000 # This is required for larger galleries to be build (60 sec)
 
+
 defaultContentLanguage = 'en'
 
 enableInlineShortcodes = true
@@ -35,7 +36,6 @@ pygmentsUseClasses = true
     lineNos = false
     tabWidth = 2
     noClasses = false
-
 
 # # required
 # [build]
