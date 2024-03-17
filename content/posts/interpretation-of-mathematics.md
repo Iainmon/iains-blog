@@ -145,7 +145,7 @@ x\in A\cap B &:\lequiv x\in A\wedge x \in B
 ``` 
 
 
-
+Suppose $\spi$ is a formula with one free variable. Now suppose we have proved $\exists A(\psi(A))$, so we are then justified in assuming $\psi(A)$ where $A$ is some set. If we can prove that for any set $B$, if $\psi(B)$ then $B=A$, we then know that $A$ is unique with respect to $\psi$, concluding that there exists a unique set $A$, such that $\psi(A)$. That is, 
 
 
 
