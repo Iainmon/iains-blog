@@ -5,14 +5,14 @@ draft = false
 +++
 
 ```katex
-\gdef\mathblue#1{\colorbox{blue}{$#1$}}
-\gdef\mathgreen#1{\colorbox{green}{$#1$}}
-\gdef\mathred#1{\colorbox{red}{$#1$}}
-\gdef\mathhl#1{\colorbox{Orchid}{$#1$}}
+\def\mathblue#1{\colorbox{blue}{$#1$}}
+\def\mathgreen#1{\colorbox{green}{$#1$}}
+\def\mathred#1{\colorbox{red}{$#1$}}
+\def\mathhl#1{\colorbox{Orchid}{$#1$}}
 
-\gdef\lequiv{\fallingdotseq}
+\def\lequiv{\fallingdotseq}
 ```
-$\gdef\lequiv{\fallingdotseq}$
+$\def\lequiv{\fallingdotseq}$
 
 What mathematics describes is a long standing issue in philosophy. It is hard to break into this subject, but I hope that my intent can be shared. 
 

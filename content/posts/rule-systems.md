@@ -5,7 +5,7 @@ draft = false
 +++
 
 ```katex
-\gdef\infer#1#2{\dfrac{#2}{#1}}
+\def\infer#1#2{\dfrac{#2}{#1}}
 ```
 
 Rule systems are seen in almost every programming languages paper. They are a tool for conveying very precise notions of computation. In general, is not easy to give a succinct definition of a rule system, but one can be described easily by adopting a specific representation. 

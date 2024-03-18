@@ -11,9 +11,12 @@
         return MathJax.startup.defaultPageReady();
       }
     },
+    loader: {
+      load: ['[tex]/textmacros','[tex]/color'],
+    },
     tex: {
       packages: {
-        '[+]': ['ams'],
+        '[+]': ['ams','textmacros','color'],
         '[-]': ['noundefined','autoload']
       },
       inlineMath: [['$', '$'], ['\\(', '\\)']],
