@@ -4,6 +4,17 @@ date = 2024-03-16T16:05:13-10:00
 draft = false
 +++
 
+$$
+\def\por{\ \ | \ \ }
+\def\eqdef{\overset{\textsf{def}}{=}}
+\def\freevars{\textsf{free}}
+\def\dom{\textsf{dom}}
+\def\tsf#1{\textsf{#1}}
+\def\unifyj#1#2#3{#1 \sim #2 \Downarrow #3}
+$$
+
+
+
 Unification is probably one of the most important concepts in computer science. If you are not aware, unification is basically the process you undergo to find out how two syntactic objects like $a+b$ and $a+2c$ can be the same thing. In this case, you replace $b$ with $2c$. Note that you don't replace $2c$ with $b$, as $2\cdot c$ is less general than $b$, since $2\cdot c$ contains the literal $2$. 
 
 Daniel created a language called Bergamot (https://danilafe.com/blog/bergamot/) that allows you to write expressions and unify them, while being able to see a trace of the unification process. Prolog is a very popular language that is based on unification, and belongs to the class of Logic Programming Languages. There are several projects that implement unification algorithms and give some sort of trace of the process. Though, Daniel's Bergamot is distinguished among these, as Bergamot produces a specific kind of trace called a *proof tree*. 
@@ -17,9 +28,63 @@ Show basic example of proof tree application. use < example.
 
 Proof trees are great explanations. But how do you make them? By hand, it is usually not so hard, since humans are generally pretty good at unification. But how does a computer do it? More precisely, how do you make a program that looks at a bunch of rules, along with a conclusion, and produces a proof tree? 
 
-While the unification process has been formalized in many places, the process of proof tree construction has not. Here I will try to give a formal(ish) intro to proof tree generation. 
+While the unification process has been formalized in many places, the process of proof tree construction has not. I really want to formally describe the proof tree generation process in its entirety, but in order for it to make any sense, I need to tell you about how unification works. Here I will try to give a formal(ish) intro to unification. Then later, I will tell you about how you can make proof trees. 
+
+### Unification
 
 
+
+Two terms $t_1$ and $t_2$ are unifiable if we can replace shared variables of $t_1$ and $t_2$ with certain terms, resulting in two equal terms. This replacement information is encoded in an object called a substitution, which is denoted by $\sigma$ (and sometimes $\tau$). You can think of substitutions as a dictionary that maps variables to terms. The result of replacing $t$'s variables with their coresponding terms in $\sigma$, is denoted by $t[\sigma]$. Then, if $t_1[\sigma]=t_2[\sigma]$ is the case, then $\sigma$ is called a unifier for $t_1$ and $t_2$. In other words, $\sigma$ unifies $t_1$ and $t_2$​​. Now, to improve the initial definition, two terms $t_1$ and $t_2$​​ are said to be unifiable if they have a unifier. 
+
+
+
+The formalization starts with the language of terms for which we are unifying. Terms can be one of two things, (i) a variable $x\in \textsf{Var}$, or (ii) a construct $f(t_1,\ldots,t_n)$ of zero or more terms $t_1,\ldots,t_n\in\tsf{Term}$, with the constructor $f\in \tsf{Name}$. The $\tsf{Term}$ language is defined by the grammar
+$$
+%\begin{align*}
+%t\in\tsf{Term} ::= & \  x \por f(t^n)\\
+%t^n \eqdef & \begin{cases} & \text{if $n = 0$}\\ t_1,\ldots,t_n & \text{otherwise}\end{cases}
+%\end{align*}
+t\in\tsf{Term} ::= x \por f(t_1,\ldots,t_n)
+$$
+where $x\in \tsf{Var}$, $f\in \tsf{Name}$, and $n\in\N$. It may seem odd that constructors are just names, but this is what allows us to represent an expression from any language as a term. 
+
+Consider our $a+b$ and $a+2c$ example from above. We can write $a+b$ as $+(a,b)$, where $a,b\in \tsf{Var}$ and $+\in \tsf{Name}$. Then for $a+2c=a+2\times c$, we have $+(a,\times(2(),c))$, where $a,c\in \tsf{Var}$ and the constructors $+,\times,2\in \tsf{Name}$​. For the sake of aesthetics, constructed terms with zero arguments will be written without parenthesis. That is, if $f\in \tsf{Name}$, then $f()\in\tsf{Term}$ is written as $f\in\tsf{Term}$. In summary,
+$$
+\begin{align*}
+a+b&\to +(a,b)\\
+a+2c=a+2\times c &\to +(a,\times(2(),c))=+(a,\times(2,c))
+\end{align*}
+$$
+where $a,b,c\in \tsf{Var}$ and $+,\times,2\in \tsf{Name}$.
+
+When a variable $x\in\tsf{Var}$ is used in a term $t\in \tsf{Term}$, it represents an abstraction over terms that can exist in place of $x$. Another view that I like, is that terms which have one or more variables act as templates for all other terms that may be unified. The set of variables of a term $t$ is called the *free variables* of $t$, and is denoted by $\freevars(t)$. The function $\freevars$ from terms to sets of variables can easily be defined,
+$$
+\freevars : \tsf{Term}\to \mathcal{P}\left(\tsf{Var}\right) \qquad\qquad \freevars(t)\eqdef\begin{cases}x & \text{if $t=x\in\tsf{Var}$}\\ \bigcup\limits_{i=1}^n \freevars(t_i) & \text{if $t=f(t_1,\ldots,t_n)$}\\
+\varnothing &\text{otherwise}\end{cases}
+$$
+A term $t$ is said to be *closed* if $t$ does not have any variables, that is $\freevars(t)=\varnothing$.
+
+
+
+Terms don't only represent expression, they can represent statements.
+
+#### Substitutions
+
+Pinning down what a substitution is *exactly*, can tricky. In essence, a substitution $\sigma$ is an object that contains information about how variables are replaced by terms.
+
+
+
+
+
+
+
+
+
+we can find a unifier $\sigma$ that 
+
+
+
+Unification in general is a nondeterministic process. Two terms $t_1$ and $t_2$ can be unified in many different ways, as in, there may be more than one unifier $\sigma$ such that $\sigma$ unifies $t_1$ and $t_2$, that is $t_1[\sigma]=t_2[\sigma]$. Thankfully, there is a deterministic process to find a unifier with minimal effort. 
 
 
 
