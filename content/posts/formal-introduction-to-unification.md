@@ -6,8 +6,6 @@ draft = false
 
 $$
 \def\por{\ \ | \ \ }
-\def\eqdef{\overset{\textsf{def}}{=}}
-\def\freevars{\textsf{free}}
 \def\dom{\textsf{dom}}
 \def\tsf#1{\textsf{#1}}
 \def\unifyj#1#2#3{#1 \sim #2 \Downarrow #3}
@@ -50,16 +48,15 @@ where $x\in \tsf{Var}$, $f\in \tsf{Name}$, and $n\in\N$. It may seem odd that co
 
 Consider our $a+b$ and $a+2c$ example from above. We can write $a+b$ as $+(a,b)$, where $a,b\in \tsf{Var}$ and $+\in \tsf{Name}$. Then for $a+2c=a+2\times c$, we have $+(a,\times(2(),c))$, where $a,c\in \tsf{Var}$ and the constructors $+,\times,2\in \tsf{Name}$​. For the sake of aesthetics, constructed terms with zero arguments will be written without parenthesis. That is, if $f\in \tsf{Name}$, then $f()\in\tsf{Term}$ is written as $f\in\tsf{Term}$. In summary,
 $$
-\begin{align*}
-a+b&\to +(a,b)\\
-a+2c=a+2\times c &\to +(a,\times(2(),c))=+(a,\times(2,c))
+\begin{align*} a+b & \to +(a,b)\\\\[8pt]
+a+2c=a+2\times c & \to +(a,\times(2(),c))=+(a,\times(2,c))
 \end{align*}
 $$
 where $a,b,c\in \tsf{Var}$ and $+,\times,2\in \tsf{Name}$.
 
 When a variable $x\in\tsf{Var}$ is used in a term $t\in \tsf{Term}$, it represents an abstraction over terms that can exist in place of $x$. Another view that I like, is that terms which have one or more variables act as templates for all other terms that may be unified. The set of variables of a term $t$ is called the *free variables* of $t$, and is denoted by $\freevars(t)$. The function $\freevars$ from terms to sets of variables can easily be defined,
 $$
-\freevars : \tsf{Term}\to \mathcal{P}\left(\tsf{Var}\right) \qquad\qquad \freevars(t)\eqdef\begin{cases}x & \text{if $t=x\in\tsf{Var}$}\\ \bigcup\limits_{i=1}^n \freevars(t_i) & \text{if $t=f(t_1,\ldots,t_n)$}\\
+\freevars : \tsf{Term}\to \mathcal{P}\left(\tsf{Var}\right) \qquad\qquad \freevars(t)\eqdef\begin{cases}x & \text{if $t=x\in\tsf{Var}$}\\\ \bigcup\limits_{i=1}^n \freevars(t_i) & \text{if $t=f(t_1,\ldots,t_n)$}\\\
 \varnothing &\text{otherwise}\end{cases}
 $$
 A term $t$ is said to be *closed* if $t$ does not have any variables, that is $\freevars(t)=\varnothing$.
@@ -70,11 +67,34 @@ Terms don't only represent expression, they can represent statements.
 
 #### Substitutions
 
+Substitutions are objects that carry information about replacing variables with terms. Substitutions can be represented in several different ways (we will pick one later), but we can describe them generally by certain rules they must follow. 
+
+The set of substitutions is denoted by $\tsf{Subst}$. Along with the set $\tsf{Subst}$, we must have two operations,
+
+- a method for applying a substitution $\sigma \in \tsf{Subst}$ to a term $t$, by replacing every occurance of a free variable of $t$ with its coresponding term mapped by $\sigma$, resulting in the term $t[\sigma]\in\tsf{Term}$,
+- and a function $\odot : \tsf{Subst}\times \tsf{Subst} \to \tsf{Subst}$, which is way to compose any two substitutions $\sigma,\tau\in\tsf{Subst}$, resulting in a new substitution $\sigma\odot\tau=\tau\sigma\in\tsf{Subst}$ by applying $\tau$ first, then $\sigma$. (it is convention to write $\tau\sigma$ to mean $\sigma \odot \tau$)
+
+Composing substitutions must obey certain rules, that is, for all $t\in\tsf{Term}$ and $\sigma,\tau\in\tsf{Subst}$,
+$$
+(t[\tau])[\sigma]=t[\tau\sigma]=t[\sigma\odot\tau],
+$$
+meaning that applying $\tau$ to $t$, then applying $\sigma$ is the same as applying $\tau\sigma=\sigma\tau$ to $t$. Substitutions must also distribute through constructed terms, that is, 
+$$
+f(t_1,\ldots,t_n)[\sigma]=f(t_1[\sigma],\ldots,t_n[\sigma]).
+$$
+
+
+Representing substitutions as dictionaries 
+
+
+
+
+
 Pinning down what a substitution is *exactly*, can tricky. In essence, a substitution $\sigma$ is an object that contains information about how variables are replaced by terms.
 
 
 
-
+1
 
 
 

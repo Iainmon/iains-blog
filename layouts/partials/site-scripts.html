@@ -2,19 +2,55 @@
 {{/* partial "katex/assets/css" . */}}
 {{/* partial "katex/assets/js" . */}}
 
+
 <script>
-MathJax = {
-  tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
-  svg: {fontCache: 'global'},
-  options: {
-    renderActions: {
-      addMenu: []
+  window.MathJax = {
+    startup: {
+      pageReady: function () {
+        console.log('Running MathJax');
+        return MathJax.startup.defaultPageReady();
+      }
+    },
+    tex: {
+      packages: {
+        '[+]': ['ams'],
+        '[-]': ['noundefined','autoload']
+      },
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      macros: {
+        N: '{\\mathbb{N}}',
+        Z: '{\\mathbb{Z}}',
+        Q: '{\\mathbb{Q}}',
+        freevars: '{\\textsf{free}}',
+        eqdef: '{\\overset{\\text{def}}{=}}',
+      },
+      formatError: (jax,err) => {
+        console.log('MathJax error:', err);
+        return jax.formatError(err);
+      }
+    },
+    svg: {
+      fontCache: 'global',
+      mtextInheritFont: true,
+      scale: 0.97,
+      minScale: 0.6,
+    },
+    options: {
+      renderActions: {
+        addMenu: [],
+      },
+      skipHtmlTags: [            //  HTML tags that won't be searched for math
+          'script', 'noscript', 'style', 'textarea', 'pre',
+          'code', 'annotation', 'annotation-xml'
+      ],
     }
-  }
-};
-</script>
-{{/* <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script> */}}
+  };
+  </script>
+
+<!-- <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script> -->
 <script id="MathJax-script" src="/mathjax/tex-svg.js" defer></script>
+
 
 {{/*
 <link rel="stylesheet" href="/katex/katex.min.css">
