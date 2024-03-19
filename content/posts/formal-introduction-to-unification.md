@@ -9,6 +9,7 @@ $$
 \def\dom{\textsf{dom}}
 \def\tsf#1{\textsf{#1}}
 \def\unifyj#1#2#3{#1 \sim #2 \Downarrow #3}
+\def\dict#1#2{\textsf{Dict}\left( #1, #2 \right)}
 $$
 
 
@@ -56,7 +57,7 @@ where $a,b,c\in \tsf{Var}$ and $+,\times,2\in \tsf{Name}$.
 
 When a variable $x\in\tsf{Var}$ is used in a term $t\in \tsf{Term}$, it represents an abstraction over terms that can exist in place of $x$. Another view that I like, is that terms which have one or more variables act as templates for all other terms that may be unified. The set of variables of a term $t$ is called the *free variables* of $t$, and is denoted by $\freevars(t)$. The function $\freevars$ from terms to sets of variables can easily be defined,
 $$
-\freevars : \tsf{Term}\to \mathcal{P}\left(\tsf{Var}\right) \qquad\qquad \freevars(t)\eqdef\begin{cases}x & \text{if $t=x\in\tsf{Var}$}\\\ \bigcup\limits_{i=1}^n \freevars(t_i) & \text{if $t=f(t_1,\ldots,t_n)$}\\\
+\freevars : \tsf{Term}\to \mathcal{P}\left(\tsf{Var}\right) \qquad\qquad \freevars(t)\eqdef\begin{cases}\lbrace x \rbrace & \text{if $t=x\in\tsf{Var}$}\\\ \bigcup\limits_{i=1}^n \freevars(t_i) & \text{if $t=f(t_1,\ldots,t_n)$}\\\
 \varnothing &\text{otherwise}\end{cases}
 $$
 A term $t$ is said to be *closed* if $t$ does not have any variables, that is $\freevars(t)=\varnothing$.
@@ -84,23 +85,28 @@ f(t_1,\ldots,t_n)[\sigma]=f(t_1[\sigma],\ldots,t_n[\sigma]).
 $$
 
 
-Representing substitutions as dictionaries 
+
+Dictionaries are one such instance for substitutions. As you may know, a dictionary is a collection of pairs of keys and values, with the condition that each key may only map to a single value. 
+
+Given a sets $K$ of keys and $V$ of values, a dictionary $d$ with keys in $K$ and values in $V$ is a relation on $K$ and $V$, that is, $d\subseteq K\times V$ or equivalently $d\in \mathcal{P}(K\times V)$. But $\mathcal{P}(K\times V)$ isn't the set of all dictionaries, as there are some relations on $K$ and $V$ that don't map the same key to just one value (such as $d=K\times V\in \mathcal{P}(K\times V)$). So in order to be very specific and narrow down the set of dictionaries, we define the set $\dict K V \subseteq \mathcal{P}(K\times V)$ to be that such set,
+$$
+\dict K V = \lbrace d \subseteq K \times V \ | \ d : \dom(K) \to V\rbrace,
+$$
+where $\dom(d)=\lbrace k \ | \ (k,v) \in d\rbrace$ is the set of keys for the dictionary $d$. This means that every $d\in \dict K V$ is a function on its set of keys. 
+
+With that out of the way, for our case, the keys are variables and the values are terms, so $\tsf{Subst} = \dict {\tsf{Var}} {\tsf{Term}}$. The operation for applying a substitution (dictionary) $\sigma \in \tsf{Subst}$ to a term $t\in \tsf{Term}$, is defined in a pretty straightforward way,
+$$
+t[\sigma]\eqdef \begin{cases}\sigma(x) & \text{if $t=x\in \tsf{Var}$ and $x\in\dom(\sigma)$}\\\ f(t_1[\sigma],\ldots,t_n[\sigma]) & \text{if $t=f(t_1,\ldots,t_n)$}\\\ t & \text{otherwise}\end{cases}
+$$
+which means every variable $x\in\freevars(t)$ will be replaced by the corresponding term $\sigma(x)$, provided $x$ is a key in $\sigma$, that is $x\in\dom(\sigma)$. Otherwise, $x$ will remain unchanged in $t$ if $x\not\in\dom(\sigma)$. 
+
+As an example, consider the substitution $\sigma=\lbrace (b,\times(2,c))\rbrace\in\dict {\tsf{Var}}{\tsf{Term}}=\tsf{Subst}$, and then applying $\sigma$ to the term $+(a,b)$​,
+$$
++(a,b)[\sigma]=+(a,b)[\lbrace (b,\times(2,c))\rbrace]=+(a[\lbrace (b,\times(2,c))\rbrace],b[\lbrace (b,\times(2,c))\rbrace])=+(a,\times(2,c)).
+$$
 
 
 
-
-
-Pinning down what a substitution is *exactly*, can tricky. In essence, a substitution $\sigma$ is an object that contains information about how variables are replaced by terms.
-
-
-
-1
-
-
-
-
-
-we can find a unifier $\sigma$ that 
 
 
 
