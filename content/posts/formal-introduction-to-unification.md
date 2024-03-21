@@ -145,7 +145,7 @@ def compose(sigma,tau):
 
 
 
-
+## The rest are notes
 
 
 
@@ -193,8 +193,6 @@ $$
 \dict K V = \lbrace d \subseteq K \times V \ | \ d : \dom(d) \to V\rbrace,
 $$
 where $\dom(d)=\lbrace k \ | \ (k,v) \in d\rbrace$ is the set of keys for the dictionary $d$. This means that every $d\in \dict K V$ is a function on its set of keys.
-
-
 
 
 
