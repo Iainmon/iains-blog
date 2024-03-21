@@ -110,9 +110,9 @@ $$
 
 Now we must define the operation $\odot : \tsf{Subst}\times \tsf{Subst} \to \tsf{Subst}$ that composes substitutions $\sigma, \tau \in \tsf{Subst}$. The substitution $\sigma \odot \tau\in \tsf{Subst}$ is defined by mapping all $x\in \dom(\tau)\cup \dom(\sigma)$ to $\tau(x)[\sigma]$ when $x\in \dom(\tau)$, and $\sigma(x)$ when $x\in \dom(\sigma)$ but $x\not\in \dom(\tau)$. In other words,
 $$
-(\sigma\odot \tau)(x) \eqdef \begin{cases}t[\sigma] & \text{if $x \mapsto t\in \tau$}\\\ \sigma(x) & \text{if $x\not\in \dom(\tau)$} \end{cases}
+\sigma\odot \tau\eqdef x\mapsto \begin{cases}\tau(x)[\sigma] & \text{if $x\in \dom(\tau)$}\\\ \sigma(x) & \text{if $x\in \dom(\sigma)\setminus \dom(\tau)$} \end{cases}
 $$
-for all $x\in \dom(\tau)\cup \dom(\sigma)$, and where $x\mapsto t \in \tau$ means $x\in \dom(\tau)$ and $\tau(x)=t$. 
+for all $x\in \dom(\tau)\cup \dom(\sigma)$. 
 
 
 
