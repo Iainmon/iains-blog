@@ -179,10 +179,11 @@ $$
 $$
 which acts like the base case for unifying constructed terms. 
 
-These rules describe a process for finding the most minimal unifier for two terms. 
+These rules describe a process for finding the most minimal unifier for two terms. The relation $\unifyj \cdot \cdot \cdot$ described is in fact a function from $\tsf{Term}\times \tsf{Term}$ to $\tsf{Subst}$. 
 
+
+<!--
 ## The rest are notes
-
 
 
 Dictionaries are one such instance for substitutions. As you may know, a dictionary is a collection of pairs of keys and values, with the condition that each key may only map to a single value. To be more specific, a dictionary $d$ from the set of keys $K$ to the set of values $V$, is a partial function from $K$ to $V$, which is written as $d:K\pf V$​. Unlike functions, partial functions do not need to be defined for every element in their domain, just a subset. The set of dictionaries with keys $K$ and values $V$ is the set of all partial functions from $K$ to $V$,
@@ -243,3 +244,4 @@ A term can represent a statement about how other terms are related.
 
 
 
+-->
