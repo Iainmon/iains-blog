@@ -97,6 +97,10 @@ $$
 $$
 A relation $f$ is a *partial function* from $A$ to $B$ if $A'=\dom(f)\subseteq A$ and $f$ is a function from $A'$ to $B$, that is, $f:A' \to B$. When $f$ is a partial function, we write $f: A\pf B$​. 
 
+
+
+
+
 Partial functions are one such representation for substitutions. We will consider substitutions to be partial functions from variables to terms,
 $$
 \tsf{Subst} = \left\lbrace \sigma \subseteq \tsf{Var}\times \tsf{Term} \ | \ \sigma : \tsf{Var} \pf \tsf{Term} \right\rbrace.
@@ -111,6 +115,10 @@ As an example, consider the substitution $\sigma=\lbrace (b,\times(2,c))\rbrace\
 $$
 +(a,b)[\sigma]=+(a,b)[\lbrace (b,\times(2,c))\rbrace]=+(a[\lbrace (b,\times(2,c))\rbrace],b[\lbrace (b,\times(2,c))\rbrace])=+(a,\times(2,c)).
 $$
+
+
+
+
 
 Now we must define the operation $\odot : \tsf{Subst}\times \tsf{Subst} \to \tsf{Subst}$ that composes substitutions $\sigma, \tau \in \tsf{Subst}$. The substitution $\sigma \odot \tau\in \tsf{Subst}$ is defined by
 $$
@@ -171,7 +179,7 @@ $$
 $$
 which acts like the base case for unifying constructed terms. 
 
-
+These rules describe a process for finding the most minimal unifier for two terms. 
 
 ## The rest are notes
 
