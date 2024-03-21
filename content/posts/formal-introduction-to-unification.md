@@ -108,11 +108,38 @@ $$
 +(a,b)[\sigma]=+(a,b)[\lbrace (b,\times(2,c))\rbrace]=+(a[\lbrace (b,\times(2,c))\rbrace],b[\lbrace (b,\times(2,c))\rbrace])=+(a,\times(2,c)).
 $$
 
-Now we must define the operation $\odot : \tsf{Subst}\times \tsf{Subst} \to \tsf{Subst}$ that composes substitutions $\sigma, \tau \in \tsf{Subst}$. The substitution $\sigma \odot \tau\in \tsf{Subst}$ is defined by mapping all $x\in \dom(\tau)\cup \dom(\sigma)$ to $\tau(x)[\sigma]$ when $x\in \dom(\tau)$, and $\sigma(x)$ when $x\in \dom(\sigma)$ but $x\not\in \dom(\tau)$. In other words,
+Now we must define the operation $\odot : \tsf{Subst}\times \tsf{Subst} \to \tsf{Subst}$ that composes substitutions $\sigma, \tau \in \tsf{Subst}$. The substitution $\sigma \odot \tau\in \tsf{Subst}$ is defined by
 $$
 \sigma\odot \tau\eqdef x\mapsto \begin{cases}\tau(x)[\sigma] & \text{if $x\in \dom(\tau)$}\\\ \sigma(x) & \text{if $x\in \dom(\sigma)\setminus \dom(\tau)$} \end{cases}
 $$
-for all $x\in \dom(\tau)\cup \dom(\sigma)$. 
+for all $x\in \dom(\tau)\cup \dom(\sigma)$. Alternatively, we could have used an equivalent definition to the one above,
+$$
+\sigma\odot \tau\eqdef\lbrace (x[\tau])[\sigma]\ | \ x\in \dom(\tau)\cup \dom(\sigma)\rbrace.
+$$
+To see how this works, consider the two substitutions,
+$$
+\sigma = \lbrace a \mapsto c, c\mapsto b\rbrace \qquad\qquad  \tau=\lbrace b\mapsto \times(2,c)\rbrace,
+$$
+where $(x,y)$ is written as $x\mapsto y$. We then have
+$$
+\tau\sigma=\sigma \odot \tau =\lbrace a \mapsto c, c\mapsto b\rbrace \odot \lbrace b\mapsto \times(2,c)\rbrace = \lbrace a \mapsto c, b\mapsto \times (2,d)\rbrace
+$$
+and so
+$$
+\begin{gather*}
++(a,b)\overset{\tau}{\longrightarrow}+(a,\times(2,c))\overset{\sigma}{\longrightarrow}+(a,\times(2,d))\\\\[4pt]
++(a,b)\overset{\tau\sigma}{\longrightarrow}+(a,\times(2,d)).
+\end{gather*}
+$$
+If you like, here is an implementation of $\odot$ in Python,
+
+```python
+def compose(sigma,tau):
+  domain = sigma.keys() + tau.keys()
+  return {x : apply(tau[x],sigma) if x in tau.keys() else sigma[x] for x in domain}
+```
+
+
 
 
 
