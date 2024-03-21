@@ -148,7 +148,7 @@ def compose(sigma,tau):
 
 Unification in general is a nondeterministic process. Two terms $t_1$ and $t_2$ can be unified in many different ways, as in, there may be more than one unifier $\sigma$ such that $\sigma$ unifies $t_1$ and $t_2$, that is $t_1[\sigma]=t_2[\sigma]$. Thankfully, there is a deterministic process to find a unifier with minimal effort. 
 
-The statement that $t_1,t_2\in \tsf{Term}$ are unified by $\sigma \in \tsf{Subst}$ is written $\unifyj {t_1} {t_2} \sigma$. This can be formalized as a relation on pairs of terms and substitutions, $\unifyj \_ \_ \_ \subseteq \tsf{Term} \times \tsf{Term} \times \tsf{Subst}$, and can be describd using inference rules. 
+The statement that $t_1,t_2\in \tsf{Term}$ are unified by $\sigma \in \tsf{Subst}$ is written $\unifyj {t_1} {t_2} \sigma$. This can be formalized as a relation on pairs of terms and substitutions, $\unifyj \\_ \\_ \\_ \subseteq \tsf{Term} \times \tsf{Term} \times \tsf{Subst}$, and can be describd using inference rules. 
 
 Let's start off with the most basic rule,
 $$
