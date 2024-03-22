@@ -2,6 +2,7 @@
 title = 'Interpretation of Mathematics'
 date = 2024-01-02T22:56:58-10:00
 draft = false
+tags = ['set theory', 'first order logic', 'logic', 'zfc', 'definitions', 'mathematics']
 +++
 
 ```katex

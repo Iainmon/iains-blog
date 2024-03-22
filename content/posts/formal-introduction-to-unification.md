@@ -2,7 +2,7 @@
 title = 'Formal Introduction to Unification'
 date = 2024-03-16T16:05:13-10:00
 draft = false
-
+tags = ['unification', 'rule systems', 'inference rules', 'logic programming', 'bergamot','logic']
 +++
 
 $$

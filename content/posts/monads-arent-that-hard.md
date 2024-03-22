@@ -2,6 +2,7 @@
 title = "Monads Aren't That Hard"
 date = 2022-08-01T00:01:55-10:00
 draft = false
+tags = ['monads', 'set theory', 'haskell', 'functional programming']
 +++
 
 

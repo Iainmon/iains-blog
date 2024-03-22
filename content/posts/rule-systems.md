@@ -2,6 +2,7 @@
 title = 'Rule Systems'
 date = 2024-01-01T21:07:28-10:00
 draft = false
+tags = ['rule systems', 'logic', 'zfc']
 +++
 
 ```katex
