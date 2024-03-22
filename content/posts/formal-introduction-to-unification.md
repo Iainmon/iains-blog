@@ -12,9 +12,11 @@ $$
 \def\unifyj#1#2#3{#1 \sim #2 \Downarrow #3}
 \def\dict#1#2{\textsf{Dict}\left( #1, #2 \right)}
 \def\pf{\hookrightarrow}%\rightharpoonup
-\def\tone{t_1}
-\def\ttwo{t_2}
-\def\rule#1#2#3{\dfrac{#3}{#2}\ #1}
+\def\tone{{t_1}}
+\def\ttwo{{t_2}}
+\def\rule#1#2#3{\dfrac{#3}{#2}\ {#1}}
+\def\eqdef{\overset{\textsf{def}}{=}}
+\def\freevars{\textsf{free}}
 $$
 
 
@@ -179,10 +181,44 @@ $$
 $$
 which acts like the base case for unifying constructed terms. 
 
-These rules describe a process for finding the most minimal unifier for two terms. The relation $\unifyj \cdot \cdot \cdot$ described is in fact a function from $\tsf{Term}\times \tsf{Term}$ to $\tsf{Subst}$. 
+These rules describe a process for finding the most minimal unifier for two terms. The relation $\unifyj \cdot \cdot \cdot$ described is in fact a partial function from $\tsf{Term}\times \tsf{Term}$ to $\tsf{Subst}$. To see it this way, we will define the $\sim$​ operation to mean 
+$$
+\tone \sim \ttwo =\sigma \iff \unifyj \tone \ttwo \sigma
+$$
+and thus,
+$$
+\sim \ : \tsf{Term}\times \tsf{Term} \pf \tsf{Subst}
+$$
+$\sim$ is partial because two terms may not be unifiable. By adding an error value $\bot$ to the codomain $\tsf{Subst}$, we can add rules that turn $\unifyj \cdot \cdot \cdot\subseteq \tsf{Term}\times \tsf{Term} \times (\tsf{Subst} \cup \lbrace\bot\rbrace)$ into a function, which means
+$$
+\sim \  : \tsf{Term}\times \tsf{Term} \to (\tsf{Subst} \cup \lbrace\bot\rbrace)
+$$
+
+and we can know if two terms cannot be unified. 
+
+If $x\in \freevars(t)$, then $x$ cannot be unified with $t$, as no simultanius substitution would yield the same two terms. For this, we have the rules, 
+$$
+\rule{\tsf{FailCircular}_L}{\unifyj x t \bot}{x\in\freevars(t)}\qquad \rule{\tsf{FailCircular}_R}{\unifyj t x \bot}{x\in\freevars(t)}.
+$$
+
+Unification should also not be possible for constructed terms that either have two different constructors $f_1,f_2\in \tsf{Name}$, or have a different number of arguments,
+$$
+\rule{\tsf{FailDiffCons}}{\unifyj {f_1()} {f_2()} \bot }{f_1 \neq f_2}\qquad \rule{\tsf{FailDiffArgs}}{\unifyj {f_1(t_1,\ldots,t_n)} {f_2(s_1,\ldots,s_k)} \bot}{n\neq k}.
+$$
+If an arguement fails, then the rest should fail,
+$$
+\rule{\tsf{FailArg}}{\unifyj {f_1(t_1,\ldots,t_n)} {f_2(s_1,\ldots,s_n)} \bot}{\unifyj {t_n}{s_n} \bot}.
+$$
+Lastly, failure should propagate up through constructed terms,
+$$
+\rule{\tsf{FailProp}}{\unifyj {f_1(t_1,\ldots,t_n)} {f_2(s_1,\ldots,s_k)} \bot}{\unifyj {f_1(t_1,\ldots,t_{n-1})} {f_2(s_1,\ldots,s_{k-1})} \bot}.
+$$
+This last rule relies on $\tsf{FailDiffCons}$ and $\tsf{FailDiffArgs}$, and ties error checking for constructed terms all together. 
+
 
 
 <!--
+
 ## The rest are notes
 
 
