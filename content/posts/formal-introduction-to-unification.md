@@ -71,8 +71,6 @@ A term $t$ is said to be *closed* if $t$ does not have any variables, that is $\
 
 
 
-Terms don't only represent expression, they can represent statements.
-
 ### Substitutions
 
 Substitutions are objects that carry information about replacing variables with terms. Substitutions can be represented in several different ways (we will pick one later), but we can describe them generally by certain rules they must follow. 
