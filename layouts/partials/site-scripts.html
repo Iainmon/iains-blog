@@ -3,6 +3,9 @@
 {{/* partial "katex/assets/js" . */}}
 
 
+{{ if .Description }}
+<meta name="description" content="{{ .Description }}">
+{{ end }}
 
 <script>
   window.MathJax = {
