@@ -2,7 +2,7 @@
 {{/* partial "katex/assets/css" . */}}
 {{/* partial "katex/assets/js" . */}}
 
-<script defer data-domain="moncrief.dev" src="https://plausible.io/js/script.js"></script>
+
 
 <script>
   window.MathJax = {
@@ -64,3 +64,15 @@
 */}}
 {{ $siteStyle := resources.Get "scss/style.scss" | resources.ToCSS  }}
 <link rel="stylesheet" href="{{ $siteStyle.Permalink }}">
+
+
+<script defer data-domain="moncrief.dev" src="https://plausible.io/js/script.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QKYR29RVNN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QKYR29RVNN');
+</script>
