@@ -167,7 +167,7 @@ $$
 $$
 which says that the empty substitution $\varnothing\in \tsf{Subst}$ unifies $\tone$ and $\ttwo$ if $\tone=\ttwo$​. This is obvious since if two terms are the same, there is nothing to substitute to make them the same. The next two rules are applied when one of the terms in question is a variable,
 $$
-\rule{\tsf{UnifyVar}_L}{\unifyj x t {\lbrace x\mapsto t\rbrace}}{x\not\in \freevars(t)}\qquad \rule{\tsf{UnifyVar}_R}{\unifyj t x {\lbrace x\mapsto t\rbrace}}{t\not\in \tsf{Var} \qquad x\not\in \freevars(t)}
+\rule{\tsf{UnifyVar}_L}{\unifyj x t {\lbrace x\mapsto t\rbrace}}{x\not\in \freevars(t)}\qquad \rule{\tsf{UnifyVar}_R}{\unifyj t x {\lbrace x\mapsto t\rbrace}}{t\not\in \tsf{Var} \qquad x\not\in \freevars(t)}.
 $$
 The $\tsf{UnifyVar}_L$ rule says that a variable $x$ is unified with any term $t$ by the substitution that maps $x$ to $t$, provided that $x$ is not used somewhere in $t$. The right version of this rule is the same, except that $t$ cannot be a variable. 
 
@@ -187,7 +187,7 @@ $$
 $$
 and thus,
 $$
-\sim \ : \tsf{Term}\times \tsf{Term} \pf \tsf{Subst}
+\sim \ : \tsf{Term}\times \tsf{Term} \pf \tsf{Subst}.
 $$
 $\sim$ is partial because two terms may not be unifiable. By adding an error value $\bot$ to the codomain $\tsf{Subst}$, we can add rules that turn $\unifyj \cdot \cdot \cdot\subseteq \tsf{Term}\times \tsf{Term} \times (\tsf{Subst} \cup \lbrace\bot\rbrace)$ into a function, which means
 $$
